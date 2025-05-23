@@ -1,187 +1,264 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>DevOps Engineer Portfolio</title>
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-    body {
-      font-family: Georgia, serif;
-      margin: 0;
-      background: #fefefe;
-      color: #333;
-      display: flex;
-      min-height: 100vh;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>DevOps Portfolio</title>
+<style>
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
+  body, html {
+    height: 100%;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+  }
+  .section {
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top: 100vh; /* Start off screen */
+    left: 0;
+    padding: 40px;
+    background: #f0f4f8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: top 0.7s ease;
+  }
+  .section.active {
+    top: 0;
+  }
 
-    /* Sidebar */
-    aside {
-      width: 260px;
-      background: #1f2937;
-      color: #f3f4f6;
-      padding: 2rem;
-      border-right: 3px solid #9ca3af;
-      position: sticky;
-      top: 0;
-      height: 100vh;
-    }
-    aside img {
-      width: 100%;
-      border-radius: 12px;
-      margin-bottom: 1rem;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-    aside h1 {
-      font-size: 1.8rem;
-      color: #60a5fa;
-      margin-bottom: 0.2rem;
-    }
-    aside p {
-      color: #9ca3af;
-      font-style: italic;
-    }
+  /* Welcome Section */
+  #welcome {
+    background: #1e3a8a;
+    color: white;
+  }
+  #welcome img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 4px solid white;
+  }
+  #welcome h1 {
+    font-size: 2.5rem;
+    margin-bottom: 8px;
+  }
+  #welcome p {
+    font-size: 1.2rem;
+    opacity: 0.8;
+  }
 
-    nav a {
-      display: block;
-      color: #f3f4f6;
-      text-decoration: none;
-      margin: 1rem 0;
-      font-weight: bold;
-      padding-left: 0.5rem;
-      transition: background 0.2s ease;
-    }
-    nav a:hover {
-      background: #374151;
-      border-left: 3px solid #60a5fa;
-    }
+  /* Skills Section */
+  #skills {
+    background: #3b82f6;
+    color: white;
+  }
+  .skill {
+    width: 80%;
+    margin: 15px 0;
+  }
+  .skill-name {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  .skill-bar {
+    background: rgba(255,255,255,0.3);
+    border-radius: 20px;
+    overflow: hidden;
+    height: 20px;
+  }
+  .skill-level {
+    height: 100%;
+    background: white;
+    width: 0;
+    border-radius: 20px;
+    color: #1e3a8a;
+    font-weight: bold;
+    text-align: right;
+    padding-right: 10px;
+    line-height: 20px;
+    transition: width 1s ease;
+  }
 
-    /* Main content */
-    main {
-      flex: 1;
-      padding: 2rem;
-    }
-    section {
-      margin-bottom: 3rem;
-    }
-    h2 {
-      border-bottom: 2px solid #60a5fa;
-      color: #1f2937;
-      padding-bottom: 0.3rem;
-    }
-    ul {
-      padding-left: 1rem;
-      line-height: 1.8;
-    }
+  /* Projects Section */
+  #projects {
+    background: #10b981;
+    color: white;
+    padding: 40px 20px;
+  }
+  #projects ul {
+    list-style-type: disc;
+    padding-left: 40px;
+    max-width: 600px;
+  }
 
-    .project {
-      margin-bottom: 1.5rem;
-      padding: 1rem;
-      background: #f9fafb;
-      border-left: 5px solid #60a5fa;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    }
+  /* Education Section */
+  #education {
+    background: #f59e0b;
+    color: white;
+  }
+  #education p {
+    font-size: 1.2rem;
+    margin: 10px 0;
+  }
 
-    a {
-      color: #2563eb;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
+  /* Personal Info Section */
+  #info {
+    background: #ef4444;
+    color: white;
+  }
+  #info p {
+    font-size: 1.3rem;
+    margin: 10px 0;
+  }
 
-    footer {
-      margin-top: 4rem;
-      font-size: 0.9rem;
-      text-align: center;
-      color: #6b7280;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      body {
-        flex-direction: column;
-      }
-      aside {
-        width: 100%;
-        height: auto;
-        text-align: center;
-        border-right: none;
-        border-bottom: 2px solid #9ca3af;
-      }
-      nav {
-        display: flex;
-        justify-content: center;
-        gap: 1rem;
-      }
-    }
-  </style>
+  /* Swipe hint */
+  .swipe-hint {
+    position: absolute;
+    bottom: 20px;
+    font-size: 1.5rem;
+    opacity: 0.6;
+    animation: bounce 2s infinite;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(10px); }
+  }
+</style>
 </head>
 <body>
 
-  <aside>
-    <img src="profile.jpg" alt="My Photo" />
-    <h1>Alex DevOps</h1>
-    <p>DevOps Engineer</p>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </aside>
+<div id="welcome" class="section active">
+  <img src="https://i.pravatar.cc/150" alt="Your Photo" />
+  <h1>Your Name</h1>
+  <p>DevOps Engineer</p>
+  <div class="swipe-hint">▼ Swipe down ▼</div>
+</div>
 
-  <main>
-    <section id="about">
-      <h2>About Me</h2>
-      <p>
-        I'm a DevOps engineer with a strong background in automation, CI/CD pipelines, cloud infrastructure, and systems reliability.
-        I bridge development and operations using modern tools and practices.
-      </p>
-    </section>
+<div id="skills" class="section">
+  <h2>Skills</h2>
+  <div class="skill">
+    <div class="skill-name">Docker</div>
+    <div class="skill-bar"><div class="skill-level" data-level="90%">90%</div></div>
+  </div>
+  <div class="skill">
+    <div class="skill-name">Kubernetes</div>
+    <div class="skill-bar"><div class="skill-level" data-level="85%">85%</div></div>
+  </div>
+  <div class="skill">
+    <div class="skill-name">AWS</div>
+    <div class="skill-bar"><div class="skill-level" data-level="80%">80%</div></div>
+  </div>
+  <div class="skill">
+    <div class="skill-name">CI/CD</div>
+    <div class="skill-bar"><div class="skill-level" data-level="75%">75%</div></div>
+  </div>
+  <div class="swipe-hint">▼ Swipe down ▼</div>
+</div>
 
-    <section id="skills">
-      <h2>Skills</h2>
-      <ul>
-        <li>Infrastructure as Code: Terraform, CloudFormation</li>
-        <li>CI/CD: Jenkins, GitHub Actions, GitLab CI</li>
-        <li>Containers & Orchestration: Docker, Kubernetes, Helm</li>
-        <li>Monitoring: Prometheus, Grafana, ELK Stack</li>
-        <li>Cloud: AWS, Azure, GCP</li>
-        <li>Scripting: Bash, Python</li>
-        <li>Version Control: Git</li>
-      </ul>
-    </section>
+<div id="projects" class="section">
+  <h2>Projects</h2>
+  <ul>
+    <li>Automated Kubernetes cluster deployment with Terraform.</li>
+    <li>CI/CD pipelines setup with Jenkins and GitHub Actions.</li>
+    <li>Containerized microservices for scalable web apps.</li>
+  </ul>
+  <div class="swipe-hint">▼ Swipe down ▼</div>
+</div>
 
-    <section id="projects">
-      <h2>Projects</h2>
-      <div class="project">
-        <h3>CI/CD Pipeline with GitHub Actions</h3>
-        <p>Built a full CI/CD pipeline that deploys containerized applications to Kubernetes on pull request merge.</p>
-      </div>
-      <div class="project">
-        <h3>Infrastructure Automation</h3>
-        <p>Automated AWS infrastructure deployment with Terraform, including networking, compute, and IAM.</p>
-      </div>
-      <div class="project">
-        <h3>Monitoring and Logging Stack</h3>
-        <p>Configured Prometheus, Grafana, Fluentd, and ELK for full observability on production workloads.</p>
-      </div>
-    </section>
+<div id="education" class="section">
+  <h2>Education</h2>
+  <p>Bachelor of Computer Science - XYZ University</p>
+  <p>Certified Kubernetes Administrator (CKA)</p>
+  <p>AWS Certified Solutions Architect – Associate</p>
+  <div class="swipe-hint">▼ Swipe down ▼</div>
+</div>
 
-    <section id="contact">
-      <h2>Contact</h2>
-      <p>Email: alex.devops@example.com</p>
-      <p>GitHub: <a href="https://github.com/alexdevops" target="_blank">github.com/alexdevops</a></p>
-      <p>LinkedIn: <a href="https://linkedin.com/in/alexdevops" target="_blank">linkedin.com/in/alexdevops</a></p>
-    </section>
+<div id="info" class="section">
+  <h2>Personal Information</h2>
+  <p><strong>Name:</strong> Your Name</p>
+  <p><strong>Father's Name:</strong> Your Father's Name</p>
+  <p><strong>Village:</strong> Your Village</p>
+  <p><strong>Date of Birth:</strong> YYYY-MM-DD</p>
+</div>
 
-    <footer>
-      <p>© 2025 Alex DevOps. All rights reserved.</p>
-    </footer>
-  </main>
+<script>
+  const sections = document.querySelectorAll('.section');
+  let current = 0;
+
+  // Animate skill bars when skills section is active
+  function animateSkills() {
+    const skillLevels = document.querySelectorAll('#skills .skill-level');
+    skillLevels.forEach(el => {
+      const level = el.getAttribute('data-level');
+      el.style.width = level;
+    });
+  }
+
+  // Reset skill bars on leaving skills section
+  function resetSkills() {
+    const skillLevels = document.querySelectorAll('#skills .skill-level');
+    skillLevels.forEach(el => {
+      el.style.width = '0';
+    });
+  }
+
+  function showSection(index) {
+    sections.forEach((section, i) => {
+      section.classList.remove('active');
+      section.style.top = '100vh';
+      if (i === index) {
+        section.classList.add('active');
+        section.style.top = '0';
+      }
+    });
+    if (sections[index].id === 'skills') {
+      animateSkills();
+    } else {
+      resetSkills();
+    }
+  }
+
+  // Handle swipe down with keyboard arrow or mouse wheel
+  window.addEventListener('wheel', e => {
+    if (e.deltaY > 0) {
+      if (current < sections.length - 1) {
+        current++;
+        showSection(current);
+      }
+    } else if (e.deltaY < 0) {
+      if (current > 0) {
+        current--;
+        showSection(current);
+      }
+    }
+  });
+
+  // Also allow arrow keys
+  window.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown') {
+      if (current < sections.length - 1) {
+        current++;
+        showSection(current);
+      }
+    } else if (e.key === 'ArrowUp') {
+      if (current > 0) {
+        current--;
+        showSection(current);
+      }
+    }
+  });
+
+  // Initial animation for skill bars if starting on skills section
+  if (sections[current].id === 'skills') {
+    animateSkills();
+  }
+</script>
 
 </body>
 </html>
