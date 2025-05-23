@@ -11,38 +11,54 @@
     body {
       font-family: Georgia, serif;
       margin: 0;
-      background: #ffffff;
-      color: #2d2d2d;
+      background: #fefefe;
+      color: #333;
       display: flex;
       min-height: 100vh;
     }
+
+    /* Sidebar */
     aside {
-      width: 250px;
-      background: #f4f4f4;
+      width: 260px;
+      background: #1f2937;
+      color: #f3f4f6;
       padding: 2rem;
-      border-right: 1px solid #ddd;
+      border-right: 3px solid #9ca3af;
       position: sticky;
       top: 0;
       height: 100vh;
     }
+    aside img {
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
     aside h1 {
-      font-size: 1.5rem;
+      font-size: 1.8rem;
+      color: #60a5fa;
       margin-bottom: 0.2rem;
     }
     aside p {
-      color: #555;
+      color: #9ca3af;
       font-style: italic;
     }
+
     nav a {
       display: block;
-      color: #2d2d2d;
+      color: #f3f4f6;
       text-decoration: none;
       margin: 1rem 0;
       font-weight: bold;
+      padding-left: 0.5rem;
+      transition: background 0.2s ease;
     }
     nav a:hover {
-      text-decoration: underline;
+      background: #374151;
+      border-left: 3px solid #60a5fa;
     }
+
+    /* Main content */
     main {
       flex: 1;
       padding: 2rem;
@@ -51,26 +67,62 @@
       margin-bottom: 3rem;
     }
     h2 {
-      border-bottom: 2px solid #2d2d2d;
+      border-bottom: 2px solid #60a5fa;
+      color: #1f2937;
       padding-bottom: 0.3rem;
     }
     ul {
       padding-left: 1rem;
+      line-height: 1.8;
     }
+
     .project {
       margin-bottom: 1.5rem;
+      padding: 1rem;
+      background: #f9fafb;
+      border-left: 5px solid #60a5fa;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     }
+
+    a {
+      color: #2563eb;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+
     footer {
       margin-top: 4rem;
       font-size: 0.9rem;
       text-align: center;
-      color: #888;
+      color: #6b7280;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+      }
+      aside {
+        width: 100%;
+        height: auto;
+        text-align: center;
+        border-right: none;
+        border-bottom: 2px solid #9ca3af;
+      }
+      nav {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+      }
     }
   </style>
 </head>
 <body>
 
   <aside>
+    <img src="profile.jpg" alt="My Photo" />
     <h1>Alex DevOps</h1>
     <p>DevOps Engineer</p>
     <nav>
@@ -85,8 +137,8 @@
     <section id="about">
       <h2>About Me</h2>
       <p>
-        I'm a DevOps engineer with a strong background in automation, CI/CD pipelines, cloud infrastructure, and systems reliability. 
-        I focus on bridging development and operations using modern DevOps practices.
+        I'm a DevOps engineer with a strong background in automation, CI/CD pipelines, cloud infrastructure, and systems reliability.
+        I bridge development and operations using modern tools and practices.
       </p>
     </section>
 
@@ -105,26 +157,17 @@
 
     <section id="projects">
       <h2>Projects</h2>
-
       <div class="project">
         <h3>CI/CD Pipeline with GitHub Actions</h3>
-        <p>
-          Implemented a CI/CD pipeline using GitHub Actions that automatically builds, tests, and deploys applications to Kubernetes.
-        </p>
+        <p>Built a full CI/CD pipeline that deploys containerized applications to Kubernetes on pull request merge.</p>
       </div>
-
       <div class="project">
         <h3>Infrastructure Automation</h3>
-        <p>
-          Designed AWS infrastructure using Terraform, including VPCs, EC2, RDS, and IAM. Automated provisioning using reusable modules.
-        </p>
+        <p>Automated AWS infrastructure deployment with Terraform, including networking, compute, and IAM.</p>
       </div>
-
       <div class="project">
         <h3>Monitoring and Logging Stack</h3>
-        <p>
-          Deployed Prometheus and Grafana for metrics, with centralized logging using Fluentd and the ELK Stack.
-        </p>
+        <p>Configured Prometheus, Grafana, Fluentd, and ELK for full observability on production workloads.</p>
       </div>
     </section>
 
