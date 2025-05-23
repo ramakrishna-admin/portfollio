@@ -3,132 +3,142 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>My Portfolio</title>
+  <title>DevOps Engineer Portfolio</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
     body {
+      font-family: Georgia, serif;
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
+      background: #ffffff;
+      color: #2d2d2d;
+      display: flex;
+      min-height: 100vh;
+    }
+    aside {
+      width: 250px;
       background: #f4f4f4;
-      color: #333;
-      scroll-behavior: smooth;
+      padding: 2rem;
+      border-right: 1px solid #ddd;
+      position: sticky;
+      top: 0;
+      height: 100vh;
     }
-    header {
-      background: #0e76a8;
-      color: white;
-      padding: 2rem 1rem;
-      text-align: center;
-      animation: fadeIn 2s ease;
+    aside h1 {
+      font-size: 1.5rem;
+      margin-bottom: 0.2rem;
     }
-    nav {
-      text-align: center;
-      margin-top: 1rem;
+    aside p {
+      color: #555;
+      font-style: italic;
     }
     nav a {
-      margin: 0 1rem;
+      display: block;
+      color: #2d2d2d;
       text-decoration: none;
-      color: #0e76a8;
+      margin: 1rem 0;
       font-weight: bold;
     }
-    section {
-      padding: 2rem 1rem;
-      max-width: 800px;
-      margin: auto;
-      animation: fadeUp 1s ease;
+    nav a:hover {
+      text-decoration: underline;
     }
-    .skills span {
-      display: inline-block;
-      background: #0e76a8;
-      color: white;
-      padding: 0.3rem 0.7rem;
-      margin: 0.3rem;
-      border-radius: 5px;
+    main {
+      flex: 1;
+      padding: 2rem;
+    }
+    section {
+      margin-bottom: 3rem;
+    }
+    h2 {
+      border-bottom: 2px solid #2d2d2d;
+      padding-bottom: 0.3rem;
+    }
+    ul {
+      padding-left: 1rem;
     }
     .project {
-      background: white;
-      padding: 1rem;
-      margin-bottom: 1rem;
-      border-left: 5px solid #0e76a8;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      transition: transform 0.3s;
-    }
-    .project:hover {
-      transform: scale(1.02);
+      margin-bottom: 1.5rem;
     }
     footer {
+      margin-top: 4rem;
+      font-size: 0.9rem;
       text-align: center;
-      padding: 2rem 1rem;
-      background: #0e76a8;
-      color: white;
-      animation: fadeIn 2s ease;
-    }
-
-    @keyframes fadeIn {
-      from {opacity: 0;}
-      to {opacity: 1;}
-    }
-
-    @keyframes fadeUp {
-      from {opacity: 0; transform: translateY(20px);}
-      to {opacity: 1; transform: translateY(0);}
+      color: #888;
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>John Doe</h1>
-    <p>Web Developer | Open Source Enthusiast</p>
-  </header>
+  <aside>
+    <h1>Alex DevOps</h1>
+    <p>DevOps Engineer</p>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </aside>
 
-  <nav>
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>
-  </nav>
+  <main>
+    <section id="about">
+      <h2>About Me</h2>
+      <p>
+        I'm a DevOps engineer with a strong background in automation, CI/CD pipelines, cloud infrastructure, and systems reliability. 
+        I focus on bridging development and operations using modern DevOps practices.
+      </p>
+    </section>
 
-  <section id="about">
-    <h2>About Me</h2>
-    <p>
-      I’m a passionate web developer who loves building elegant websites and learning new technologies.
-      I focus on performance, accessibility, and modern design patterns.
-    </p>
-  </section>
+    <section id="skills">
+      <h2>Skills</h2>
+      <ul>
+        <li>Infrastructure as Code: Terraform, CloudFormation</li>
+        <li>CI/CD: Jenkins, GitHub Actions, GitLab CI</li>
+        <li>Containers & Orchestration: Docker, Kubernetes, Helm</li>
+        <li>Monitoring: Prometheus, Grafana, ELK Stack</li>
+        <li>Cloud: AWS, Azure, GCP</li>
+        <li>Scripting: Bash, Python</li>
+        <li>Version Control: Git</li>
+      </ul>
+    </section>
 
-  <section id="skills" class="skills">
-    <h2>Skills</h2>
-    <span>HTML</span>
-    <span>CSS</span>
-    <span>JavaScript</span>
-    <span>React</span>
-    <span>Node.js</span>
-    <span>Git</span>
-  </section>
+    <section id="projects">
+      <h2>Projects</h2>
 
-  <section id="projects">
-    <h2>Projects</h2>
-    <div class="project">
-      <h3>Weather App</h3>
-      <p>A web app that fetches and displays live weather data using OpenWeather API.</p>
-      <a href="#" target="_blank">View Project</a>
-    </div>
-    <div class="project">
-      <h3>Portfolio Website</h3>
-      <p>This personal portfolio site you're viewing right now!</p>
-      <a href="#" target="_blank">View Project</a>
-    </div>
-  </section>
+      <div class="project">
+        <h3>CI/CD Pipeline with GitHub Actions</h3>
+        <p>
+          Implemented a CI/CD pipeline using GitHub Actions that automatically builds, tests, and deploys applications to Kubernetes.
+        </p>
+      </div>
 
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>Email: johndoe@example.com</p>
-    <p>GitHub: <a href="https://github.com/example" target="_blank">github.com/example</a></p>
-    <p>LinkedIn: <a href="https://linkedin.com/in/example" target="_blank">linkedin.com/in/example</a></p>
-  </section>
+      <div class="project">
+        <h3>Infrastructure Automation</h3>
+        <p>
+          Designed AWS infrastructure using Terraform, including VPCs, EC2, RDS, and IAM. Automated provisioning using reusable modules.
+        </p>
+      </div>
 
-  <footer>
-    <p>© 2025 John Doe. All rights reserved.</p>
-  </footer>
+      <div class="project">
+        <h3>Monitoring and Logging Stack</h3>
+        <p>
+          Deployed Prometheus and Grafana for metrics, with centralized logging using Fluentd and the ELK Stack.
+        </p>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>Email: alex.devops@example.com</p>
+      <p>GitHub: <a href="https://github.com/alexdevops" target="_blank">github.com/alexdevops</a></p>
+      <p>LinkedIn: <a href="https://linkedin.com/in/alexdevops" target="_blank">linkedin.com/in/alexdevops</a></p>
+    </section>
+
+    <footer>
+      <p>© 2025 Alex DevOps. All rights reserved.</p>
+    </footer>
+  </main>
 
 </body>
 </html>
